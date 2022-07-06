@@ -148,9 +148,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="MinesweeperApp.h" />
+    <ClInclude Include="MinesweeperWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MinesweeperApp.cpp" />
+    <ClCompile Include="MinesweeperWindow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

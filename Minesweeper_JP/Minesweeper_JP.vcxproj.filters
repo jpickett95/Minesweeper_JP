@@ -18,9 +18,15 @@
     <ClInclude Include="MinesweeperApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MinesweeperWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MinesweeperApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MinesweeperWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
