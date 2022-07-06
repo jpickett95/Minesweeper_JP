@@ -10,7 +10,7 @@ public:
 public:
 	int mFieldWidth = 10;
 	int mFieldHeight = 10;
-	wxButton **btn;
+	wxButton **buttons;
 	int *mField = nullptr;
 	bool mFirstClick = true;
 

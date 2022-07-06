@@ -6,7 +6,7 @@ wxEND_EVENT_TABLE()
 
 MinesweeperWindow::MinesweeperWindow() : wxFrame(nullptr, wxID_ANY, "Minesweeper - Jonah Pickett", wxPoint(500,100), wxSize(800,600))
 {
-	btn = new wxButton * [mFieldWidth * mFieldHeight];
+	buttons = new wxButton * [mFieldWidth * mFieldHeight];
 	wxGridSizer* grid = new wxGridSizer(mFieldWidth, mFieldHeight, 0, 0);
 
 	mField = new int[mFieldWidth * mFieldHeight];
@@ -15,11 +15,11 @@ MinesweeperWindow::MinesweeperWindow() : wxFrame(nullptr, wxID_ANY, "Minesweeper
 
 	for (int x = 0; x < mFieldWidth; x++) {
 		for (int y = 0; y < mFieldHeight; y++) {
-			btn[y * mFieldWidth + x] = new wxButton(this, 10000 + (y * mFieldWidth + x));
-			btn[y * mFieldWidth + x]->SetFont(font);
-			grid->Add(btn[y * mFieldWidth + x], 1, wxEXPAND | wxALL);
+			buttons[y * mFieldWidth + x] = new wxButton(this, 10000 + (y * mFieldWidth + x));
+			buttons[y * mFieldWidth + x]->SetFont(font);
+			grid->Add(buttons[y * mFieldWidth + x], 1, wxEXPAND | wxALL);
 		
-			btn[y * mFieldWidth + x]->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &MinesweeperWindow::OnButtonClicked, this);
+			buttons[y * mFieldWidth + x]->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &MinesweeperWindow::OnButtonClicked, this);
 			mField[y * mFieldWidth + x] = 0;
 		}
 	}
@@ -30,7 +30,7 @@ MinesweeperWindow::MinesweeperWindow() : wxFrame(nullptr, wxID_ANY, "Minesweeper
 
 MinesweeperWindow::~MinesweeperWindow()
 {
-	delete[] btn;
+	delete[] buttons;
 	delete[] mField;
 }
 
@@ -57,7 +57,7 @@ void MinesweeperWindow::OnButtonClicked(wxCommandEvent& evt)
 	}
 
 	// Disable Button, preventing it from being pressed again
-	btn[y * mFieldWidth + x]->Enable(false);
+	buttons[y * mFieldWidth + x]->Enable(false);
 
 	// Check is player has hit a mine
 	if (mField[y * mFieldWidth + x] == -1) {
@@ -68,8 +68,8 @@ void MinesweeperWindow::OnButtonClicked(wxCommandEvent& evt)
 		for (int x = 0; x < mFieldWidth; x++) {
 			for (int y = 0; y < mFieldHeight; y++) {
 				mField[y * mFieldWidth + x] = 0;
-				btn[y * mFieldWidth + x]->SetLabel("");
-				btn[y * mFieldWidth + x]->Enable(true);
+				buttons[y * mFieldWidth + x]->SetLabel("");
+				buttons[y * mFieldWidth + x]->Enable(true);
 			}
 		}
 	}
@@ -86,7 +86,7 @@ void MinesweeperWindow::OnButtonClicked(wxCommandEvent& evt)
 
 		// Update button labels to show mine count if > 0
 		if (mineCount > 0) {
-			btn[y * mFieldWidth + x]->SetLabel(std::to_string(mineCount));
+			buttons[y * mFieldWidth + x]->SetLabel(std::to_string(mineCount));
 		}
 	}
 
