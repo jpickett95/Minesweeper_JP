@@ -31,6 +31,7 @@ MinesweeperWindow::MinesweeperWindow() : wxFrame(nullptr, wxID_ANY, "Minesweeper
 MinesweeperWindow::~MinesweeperWindow()
 {
 	delete[] btn;
+	delete[] mField;
 }
 
 void MinesweeperWindow::OnButtonClicked(wxCommandEvent& evt)
@@ -39,7 +40,7 @@ void MinesweeperWindow::OnButtonClicked(wxCommandEvent& evt)
 	int x = (evt.GetId() - 10000) % mFieldWidth;
 	int y = (evt.GetId() - 10000) / mFieldWidth;
 
-	if (bFirstClick) {
+	if (mFirstClick) {
 		int mines = 30;
 
 		while (mines) {
@@ -52,7 +53,7 @@ void MinesweeperWindow::OnButtonClicked(wxCommandEvent& evt)
 			}
 		}
 
-		bFirstClick = false;
+		mFirstClick = false;
 	}
 
 	// Disable Button, preventing it from being pressed again
@@ -63,7 +64,7 @@ void MinesweeperWindow::OnButtonClicked(wxCommandEvent& evt)
 		wxMessageBox("BOOOOOOM!!!!! - Game Over... :(");
 
 		// Reset Game
-		bFirstClick = true;
+		mFirstClick = true;
 		for (int x = 0; x < mFieldWidth; x++) {
 			for (int y = 0; y < mFieldHeight; y++) {
 				mField[y * mFieldWidth + x] = 0;

@@ -12,7 +12,7 @@ public:
 	int mFieldHeight = 10;
 	wxButton **btn;
 	int *mField = nullptr;
-	bool bFirstClick = true;
+	bool mFirstClick = true;
 
 	void OnButtonClicked(wxCommandEvent& evt);
 
