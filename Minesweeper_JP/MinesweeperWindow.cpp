@@ -69,6 +69,7 @@ void MinesweeperWindow::OnButtonClicked(wxCommandEvent& evt)
 			for (int y = 0; y < mFieldHeight; y++) {
 				mField[y * mFieldWidth + x] = 0;
 				buttons[y * mFieldWidth + x]->SetLabel("");
+				buttons[y * mFieldWidth + x]->SetOwnBackgroundColour(wxNullColour); // reset background color
 				buttons[y * mFieldWidth + x]->Enable(true);
 			}
 		}
@@ -87,6 +88,14 @@ void MinesweeperWindow::OnButtonClicked(wxCommandEvent& evt)
 		// Update button labels to show mine count if > 0
 		if (mineCount > 0) {
 			buttons[y * mFieldWidth + x]->SetLabel(std::to_string(mineCount));
+			
+			// Color code buttons
+			if (mineCount == 1)
+				buttons[y * mFieldWidth + x]->SetOwnBackgroundColour(*wxGREEN);
+			else if (mineCount == 2)
+				buttons[y * mFieldWidth + x]->SetOwnBackgroundColour(*wxYELLOW);
+			else if (mineCount >= 3)
+				buttons[y * mFieldWidth + x]->SetOwnBackgroundColour(*wxRED);
 		}
 	}
 
